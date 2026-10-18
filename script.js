@@ -6,7 +6,7 @@ const CONFIG = {
   // 👉 COLE AQUI A URL DO GOOGLE APPS SCRIPT (terminada em /exec)
   // Quando essa URL estiver preenchida, o site puxa os preços, produtos,
   // nomes das padarias e senha direto da planilha automaticamente!
-  googleScriptUrl: "",
+  googleScriptUrl: "AKfycbzlExIDuqauWlMthzH7Sr1iKv4leF7tIBTNDK3_TMO-f7iD3BWnnaMWn440JyrxE4N5/exec",
 
   // Códigos de parceiro padrão (caso a planilha ainda não esteja conectada)
   codigosParceiroValidos: ["FATTO", "PADARIA", "1234"]

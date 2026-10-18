@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatto Per Te | Feito Para Você — Pedido Rápido & Catálogo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo-circle">
+      <span class="logo-title">FATTO</span>
+      <span class="logo-script">per te ♡</span>
+      <span class="logo-sub">FEITO PARA VOCÊ</span>
+    </div>
+    <h1>Fatto Per Te</h1>
+    <p class="slogan">"Mais que personalizados, histórias feitas para você."</p>
+    <div class="insta-pill">@fattoperte.feitopravc</div>
+  </header>
+
+  <div class="container">
+    <!-- 1. Seleção de Perfil e Produto -->
+    <div class="card">
+      <div class="section-title">1. Como você deseja fazer o pedido?</div>
+      <div class="mode-switch">
+        <button type="button" class="mode-btn active" id="btnCliente" onclick="selectClientTab()">
+          👤 Cliente / Presente
+        </button>
+        <button type="button" class="mode-btn" id="btnPadaria" onclick="selectBakeryTab()">
+          🔒 Área Panificadoras
+        </button>
+      </div>
+
+      <!-- Caixa de Bloqueio por Código -->
+      <div class="lock-box" id="partnerLockBox">
+        <div class="lock-title">🔒 Acesso Exclusivo para Parceiros</div>
+        <p class="lock-desc">
+          A tabela de parceria é exclusiva para panificadoras e confeitarias cadastradas. Digite o código fornecido pela <strong>Fatto Per Te</strong>:
+        </p>
+        <div class="lock-input-row">
+          <input type="password" id="partnerCodeInput" placeholder="Digite o código (Ex: FATTO)" />
+          <button type="button" class="btn-unlock" onclick="unlockPartnerMode()">Liberar</button>
+        </div>
+        <span class="lock-error" id="lockErrorMsg">Código incorreto. Solicite seu acesso pelo WhatsApp!</span>
+      </div>
+
+      <!-- Banner exibido apenas após desbloquear com senha -->
+      <div class="partner-banner" id="partnerBanner">
+        <div>
+          ✨ <strong>Tabela Parceiro Liberada:</strong> Valores especiais de parceria ativos para fechamento quinzenal ou mensal.
+        </div>
+        <button type="button" class="btn-lock-exit" onclick="lockPartnerMode()">Sair</button>
+      </div>
+
+      <div class="catalog-header-row">
+        <div class="section-title" style="margin-bottom: 0;">2. Escolha o Produto ou Personalizado</div>
+        <span class="sync-badge" id="syncStatusBadge" style="display: none;">🔄 Sincronizando...</span>
+      </div>
+      <div class="product-grid" id="productList" style="margin-top: 12px;"></div>
+    </div>
+
+    <!-- 2. Dados da Personalização -->
+    <form class="card" id="orderForm" onsubmit="handleOrderSubmit(event)">
+      <div class="section-title">3. Detalhes para a Criação</div>
+
+      <div class="form-row">
+        <!-- Campo para Cliente Final (Texto livre) -->
+        <div class="form-group" id="grupoNomeCliente">
+          <label for="clienteNome">Seu Nome *</label>
+          <input type="text" id="clienteNome" required placeholder="Ex: Edilice / Maria" oninput="updateSummary()" />
+        </div>
+
+        <!-- Campo para Panificadora Parceira (Lista Padronizada sincronizada com a Planilha) -->
+        <div class="form-group" id="grupoSelectPadaria" style="display: none;">
+          <label for="padariaSelect">Selecione sua Panificadora *</label>
+          <select id="padariaSelect" onchange="handleBakerySelectChange()">
+            <option value="Panificadora Pão Quente">Panificadora Pão Quente</option>
+            <option value="Confeitaria Doce Arte">Confeitaria Doce Arte</option>
+            <option value="Padaria Central">Padaria Central</option>
+            <option value="OUTRA">+ Outra Panificadora (Digitar nome)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="clienteWhats">WhatsApp de Contato *</label>
+          <input type="tel" id="clienteWhats" required placeholder="(41) 99999-9999" oninput="updateSummary()" />
+        </div>
+      </div>
+
+      <!-- Campo extra caso seja uma panificadora nova não listada -->
+      <div class="form-group" id="grupoOutraPadaria" style="display: none;">
+        <label for="outraPadariaNome">Nome da Nova Panificadora / Confeitaria *</label>
+        <input type="text" id="outraPadariaNome" placeholder="Digite o nome da padaria" oninput="updateSummary()" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="temaFesta">Tema ou Ocasião *</label>
+          <input type="text" id="temaFesta" required placeholder="Ex: Fazendinha, Roblox, Flores, Café da Manhã" oninput="updateSummary()" />
+        </div>
+        <div class="form-group">
+          <label for="nomeIdade">Nome e Idade / Frase na Arte *</label>
+          <input type="text" id="nomeIdade" required placeholder="Ex: Heitor 2 anos / Parabéns Mãe" oninput="updateSummary()" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tamanhoBolo">Tamanho do Bolo / Formato</label>
+          <select id="tamanhoBolo" onchange="updateSummary()">
+            <option value="1 kg (Aro 15)">Bolo 1 kg (Aro 15 cm)</option>
+            <option value="1.5 kg (Aro 17)">Bolo 1,5 kg (Aro 17 cm)</option>
+            <option value="2 kg (Aro 20)" selected>Bolo 2 kg (Aro 20 cm)</option>
+            <option value="3 kg ou mais (Aro 25 / Retangular)">Bolo 3 kg+ (Aro 25 / Retangular)</option>
+            <option value="Cesta / Box / Cone Floral">Não é bolo (Cesta / Box / Mimos)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="dataEntrega">Data para Entrega *</label>
+          <input type="date" id="dataEntrega" required onchange="updateSummary()" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="canalAtendimento">Enviar pedido para qual atendimento?</label>
+        <select id="canalAtendimento">
+          <option value="5541996115769">📱 Atendimento Principal & Cestas — (41) 99611-5769</option>
+          <option value="5541997646732">🎂 Atendimento Toppers & EArt's — (41) 99764-6732</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="observacoes">Detalhes de Cores, Fotos ou Observações (Opcional)</label>
+        <textarea id="observacoes" placeholder="Ex: Quero flores rosê com folhas douradas, incluir foto no topo, ou detalhes da cesta..." oninput="updateSummary()"></textarea>
+      </div>
+
+      <!-- Resumo em Tempo Real -->
+      <div class="summary-box">
+        <h4>📋 Resumo do Pedido — Fatto Per Te</h4>
+        <div class="summary-line">
+          <span>Modalidade:</span>
+          <strong id="sumTipo">Cliente Avulso</strong>
+        </div>
+        <div class="summary-line">
+          <span>Cliente / Parceiro:</span>
+          <strong id="sumCliente">-</strong>
+        </div>
+        <div class="summary-line">
+          <span>Item Escolhido:</span>
+          <strong id="sumProduto">-</strong>
+        </div>
+        <div class="summary-line">
+          <span>Tema / Arte:</span>
+          <strong id="sumTema">-</strong>
+        </div>
+        <div class="summary-line">
+          <span>Formato / Entrega:</span>
+          <strong id="sumEntrega">-</strong>
+        </div>
+        <div class="summary-total">
+          <span>Valor Estimado:</span>
+          <span id="sumValor">R$ 0,00</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-whatsapp" id="btnSubmit">
+        <span>📲 Enviar Pedido Pronto no WhatsApp</span>
+      </button>
+      <p class="status-msg">
+        Seu pedido já chega organizado no WhatsApp da Fatto Per Te e entra automaticamente na agenda de produção!
+      </p>
+    </form>
+
+    <footer>
+      Fatto Per Te • Presentes, Toppers & Papelaria Criativa<br/>
+      Sistema desenvolvido por Heerbt Lima
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

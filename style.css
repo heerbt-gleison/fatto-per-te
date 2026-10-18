@@ -1,0 +1,440 @@
+/* ==========================================================================
+   STYLE.CSS - IDENTIDADE VISUAL OFICIAL "FATTO PER TE" + BLOQUEIO DE PARCEIROS
+   ========================================================================== */
+
+:root {
+  --navy-dark: #072540;
+  --navy-main: #0c365c;
+  --gold: #c8963e;
+  --gold-light: #e5c168;
+  --gold-soft: #fbf6ec;
+  --bg: #f6f8fa;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #dde3ea;
+  --danger: #dc2626;
+  --whatsapp: #25D366;
+  --whatsapp-dark: #1da851;
+  --radius: 14px;
+  --shadow: 0 10px 28px rgba(7, 37, 64, 0.10);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding-bottom: 40px;
+}
+
+header {
+  background: radial-gradient(circle at top, var(--navy-main) 0%, var(--navy-dark) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 28px 20px 38px;
+  border-bottom: 3px solid var(--gold);
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.logo-circle {
+  width: 96px;
+  height: 96px;
+  background: #ffffff;
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  padding: 6px;
+}
+
+.logo-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.logo-script {
+  font-family: 'Brush Script MT', 'Segoe Script', cursive;
+  font-size: 1.05rem;
+  color: var(--navy-dark);
+  line-height: 1.1;
+}
+
+.logo-sub {
+  font-size: 0.45rem;
+  letter-spacing: 1.2px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+header .slogan {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--gold-light);
+  max-width: 420px;
+  margin: 0 auto 10px;
+}
+
+.insta-pill {
+  display: inline-block;
+  background: rgba(200, 150, 62, 0.18);
+  border: 1px solid var(--gold);
+  color: #fff;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.container {
+  max-width: 560px;
+  margin: -20px auto 0;
+  padding: 0 16px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin-bottom: 14px;
+  border-left: 4px solid var(--gold);
+  padding-left: 10px;
+}
+
+/* Seletor Cliente vs Panificadora */
+.mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background: #eef2f6;
+  padding: 6px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.mode-btn {
+  border: none;
+  background: transparent;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+  background: var(--navy-dark);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(7, 37, 64, 0.2);
+}
+
+/* Caixa de Senha / Código de Parceiro */
+.lock-box {
+  display: none;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--navy-dark);
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.lock-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--navy-dark);
+  margin-bottom: 4px;
+}
+
+.lock-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.lock-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.lock-input-row input {
+  flex: 1;
+  padding: 9px 12px;
+  font-size: 0.88rem;
+}
+
+.btn-unlock {
+  background: var(--navy-dark);
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-unlock:hover {
+  background: var(--navy-main);
+}
+
+.lock-error {
+  display: none;
+  color: var(--danger);
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* Banner de Parceiro Desbloqueado */
+.partner-banner {
+  display: none;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
+  color: #7c5819;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  margin-bottom: 16px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn-lock-exit {
+  background: transparent;
+  border: 1px solid #b5852b;
+  color: #7c5819;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Catálogo de Produtos Interativo */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.product-option {
+  border: 2px solid var(--border);
+  border-radius: 11px;
+  padding: 12px 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.18s ease;
+}
+
+.product-option:hover {
+  border-color: var(--gold);
+}
+
+.product-option.selected {
+  border-color: var(--navy-dark);
+  background: #f4f8fb;
+  box-shadow: inset 4px 0 0 var(--gold);
+}
+
+.prod-info h3 {
+  font-size: 0.93rem;
+  color: var(--navy-dark);
+  margin-bottom: 2px;
+}
+
+.prod-info span {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+.prod-price {
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--navy-dark);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+/* Formulário */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--navy-dark);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--navy-main);
+  box-shadow: 0 0 0 2px rgba(200, 150, 62, 0.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+/* Resumo em Tempo Real */
+.summary-box {
+  background: var(--gold-soft);
+  border: 1px dashed var(--gold);
+  border-radius: 11px;
+  padding: 14px;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  font-size: 0.86rem;
+}
+
+.summary-box h4 {
+  color: var(--navy-dark);
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(200, 150, 62, 0.2);
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--navy-dark);
+  margin-top: 8px;
+  padding-top: 6px;
+}
+
+/* Botão WhatsApp */
+.btn-whatsapp {
+  width: 100%;
+  background: var(--whatsapp);
+  color: #fff;
+  border: none;
+  padding: 15px 18px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-whatsapp:hover {
+  background: var(--whatsapp-dark);
+}
+
+.btn-whatsapp:active {
+  transform: scale(0.99);
+}
+
+.status-msg {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 20px;
+}
+
+@media (max-width: 460px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cabeçalho do catálogo e selo de sincronização com a planilha */
+.catalog-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sync-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--navy-dark);
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
+  padding: 3px 9px;
+  border-radius: 12px;
+}
